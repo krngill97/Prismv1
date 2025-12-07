@@ -1,0 +1,46 @@
+{
+  "name": "prism-blockchain",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A high-performance TypeScript blockchain with Raft consensus and probabilistic finality",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "npm run build && node dist/index.js",
+    "validator1": "npm run build && node dist/index.js --port 8001 --id validator1 --rpc-port 9001",
+    "validator2": "npm run build && node dist/index.js --port 8002 --id validator2 --peers ws://localhost:8001 --rpc-port 9002",
+    "validator3": "npm run build && node dist/index.js --port 8003 --id validator3 --peers ws://localhost:8001 --rpc-port 9003",
+    "wallet": "npm run build && node dist/cli/wallet.js",
+    "test": "jest",
+    "clean": "rm -rf dist/ data/",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "blockchain",
+    "typescript",
+    "raft",
+    "consensus",
+    "distributed-systems"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@noble/ed25519": "^2.1.0",
+    "@noble/hashes": "^1.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "level": "^8.0.0",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.11.0",
+    "@types/express": "^4.17.21",
+    "@types/ws": "^8.5.10",
+    "@types/cors": "^2.8.17",
+    "ts-node": "^10.9.2",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.11",
+    "ts-jest": "^29.1.2"
+  }
+}
